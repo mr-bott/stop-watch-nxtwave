@@ -1,6 +1,7 @@
 // Write your code here
 import {Component} from 'react'
 import './index.css'
+
 class StopWatch extends Component {
   state = {
     seconds: 0,
@@ -10,6 +11,7 @@ class StopWatch extends Component {
   tick = () => {
     this.setState(prevState => ({seconds: prevState.seconds + 1}))
   }
+
   start = () => {
     const {running} = this.state
     if (!running) {
@@ -17,19 +19,22 @@ class StopWatch extends Component {
       this.setState({running: true})
     }
   }
+
   stop = () => {
     const {running} = this.state
+
     if (running) {
       clearInterval(this.timerId)
+
+      this.setState({running: false})
     }
   }
+
   reset = () => {
-    const {running} = this.state
-    if (running) {
-      clearInterval(this.timerId)
-      this.setState({running: false, seconds: 0})
-    }
+    clearInterval(this.timerId)
+    this.setState({running: false, seconds: 0})
   }
+
   time = () => {
     const {seconds} = this.state
     const minutes = Math.floor(seconds / 60)
